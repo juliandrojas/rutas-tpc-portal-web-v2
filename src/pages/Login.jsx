@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase/client';
+
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  //const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        navigate('/');
+      }
+    });
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
-    //No reiniciar la página
     e.preventDefault();
-    console.log(email);
-    //console.log(password);
     try {
-      const result = await supabase.auth.signInWithOtp({
-        email, 
-      })
+      const result = await supabase.auth.signInWithOtp({ email });
+      alert("Revisa tu correo");
       console.log(result);
     } catch (error) {
       console.log(error)
     }
   }
+
   const containerStyle = {
     backgroundImage: "url(/4.jpeg)",
     backgroundSize: "cover",
@@ -26,6 +34,7 @@ function Login() {
     justifyContent: "center",
     alignItems: "center",
   };
+
   return (
     <div style={containerStyle}>
       <div className="card text-center">
@@ -42,14 +51,6 @@ function Login() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            {/* <div className="mb-3">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="yourpasswordhere"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div> */}
             <button type="submit" className="btn btn-primary btn-block">
               Ingresar
             </button>
