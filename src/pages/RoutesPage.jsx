@@ -52,7 +52,7 @@ function RoutesPage() {
           uploadImage.path;
         console.log("Url de la imagen: " + imageUrl);
         //Insertamos la informacion en la tabla Empresa
-        const { data: insertData, error: insertError } = await supabase
+        const { error: insertError } = await supabase
           .from("rutas")
           .insert({
             nombre: RouteName,
