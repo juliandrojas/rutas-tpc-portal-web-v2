@@ -49,7 +49,7 @@ function Company() {
           uploadImage.path;
         console.log("Url de la imagen: " + imageUrl);
         //Insertamos la informacion en la tabla Empresa
-        const { data: insertData, error: insertError } = await supabase
+        const { error: insertError } = await supabase
           .from("empresas")
           .insert({ nombre: CompanyName, url_image: imageUrl });
         if (insertError) {
