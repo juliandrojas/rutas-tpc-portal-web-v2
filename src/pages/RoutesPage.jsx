@@ -227,16 +227,17 @@ function RoutesPage() {
                     />
                   </td>
                   <td style={{ verticalAlign: "middle" }}>
-                    <a
-                      href={ruta.url_mapa}
-                      target="_blank"
-                    >
+                    <a href={ruta.url_mapa} target="_blank">
                       Ver mapa
                     </a>
                   </td>
 
                   <td style={{ verticalAlign: "middle" }}>
-                    {ruta.empresa_asociada}
+                    {
+                      AssociateCompanies.find(
+                        (company) => company.id === ruta.empresa_asociada
+                      )?.nombre
+                    }
                   </td>
                 </tr>
               ))}

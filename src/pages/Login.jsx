@@ -56,11 +56,6 @@ function Login() {
             </button>
           </form>
         </div>
-        <div className="card-footer">
-          <p>
-            ¿No tienes una cuenta? <a href="/">Regístrate</a>
-          </p>
-        </div>
       </div>
     </div>
   );

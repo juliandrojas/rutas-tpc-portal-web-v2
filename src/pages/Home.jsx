@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/client";
 
 function Home() {
   const navigate = useNavigate();
+  useEffect(() => {
+    //Si el objeto usuario no existe
+    if(!supabase.auth.getUser()) {
+      navigate("/login")
+    }
+    console.log(supabase.auth.getUser());
+  }, [navigate])
+  
   const handleCompanyClick = () => {
     navigate('/company/');
   };
