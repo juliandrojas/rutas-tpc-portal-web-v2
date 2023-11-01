@@ -18,7 +18,7 @@ function App() {
       }
       console.log(event, session);
     })
-  }, [])
+  }, [navigate])
   
   return (
     <div className="App">
