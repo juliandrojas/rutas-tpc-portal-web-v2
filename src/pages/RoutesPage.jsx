@@ -63,7 +63,8 @@ function RoutesPage() {
         if (insertError) {
           console.log("Error al insertar datos:", insertError);
         } else {
-          console.log("Datos insertados con éxito:", insertData);
+          alert("Datos insertados con éxito, recarga la página");
+          console.log("Datos insertados con éxito, recarga la página");
         }
       }
     } catch (error) {
@@ -227,7 +228,7 @@ function RoutesPage() {
                     />
                   </td>
                   <td style={{ verticalAlign: "middle" }}>
-                    <a href={ruta.url_mapa} target="_blank">
+                    <a href={ruta.url_mapa}>
                       Ver mapa
                     </a>
                   </td>

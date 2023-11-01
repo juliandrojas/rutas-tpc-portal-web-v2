@@ -55,7 +55,8 @@ function Company() {
         if (insertError) {
           console.log("Error al insertar datos:", insertError);
         } else {
-          console.log("Datos insertados con éxito:", insertData);
+          alert("Datos insertados con éxito, recarga la página");
+          console.log("Datos insertados con éxito, recarga la página");
         }
       }
     } catch (error) {
