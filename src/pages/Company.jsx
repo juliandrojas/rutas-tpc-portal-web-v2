@@ -41,10 +41,12 @@ function Company() {
         console.log("Error al subir la imagen " + uploadError);
       } else {
         console.log("Imagen subida con exito: " + uploadImage.path);
-        //console.log("Url de la imagen: "+uploadImage.url);
         const baseURL = process.env.REACT_APP_SUPABASE_URL;
         console.log(baseURL);
-        const imageUrl = baseURL +"/storage/v1/object/public/imagenesLogosEmpresas/"+uploadImage.path;
+        const imageUrl =
+          baseURL +
+          "/storage/v1/object/public/imagenesLogosEmpresas/" +
+          uploadImage.path;
         console.log("Url de la imagen: " + imageUrl);
         //Insertamos la informacion en la tabla Empresa
         const { data: insertData, error: insertError } = await supabase
@@ -56,168 +58,132 @@ function Company() {
           console.log("Datos insertados con éxito:", insertData);
         }
       }
-      /*const { data: insertData, error: insertError } = await supabase
-            .from("empresas")
-            .insert({ nombre: CompanyName, url_image: file_path });
-      if (insertError) {
-        console.log("Error al insertar datos:", insertError);
-      } else {
-        console.log("Datos insertados con éxito");
-      }*/
-    } catch (error) {}
-  };
-
-  /*const fetchEmpresas = async () => {
-    try {
-      const { data, error } = await supabase.from('empresas').select();
-
-      if (error) {
-        console.log("Error al obtener empresas:", error);
-      } else {
-        setNombreEmpresa(data || []);
-      }
     } catch (error) {
-      console.log("Error en la solicitud:", error);
+      console.log("Error en clase Company: " + error)
     }
   };
-  useEffect(() => {
-    fetchEmpresas();
-  }, []);*/
-  /*const containerStyle = {
-    backgroundImage: "url(/4.jpeg)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };*/
   return (
-    <div>
-      <div>
-        <div className="card text-center">
-          <div className="card-header">
-            <h1>Dashboard de empresas</h1>
-          </div>
-          <div className="card-body">
-            {/* Button Trigger Modal */}
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Cargar datos de la empresa
-            </button>
+    <>
+      <div className="card text-center">
+        <div className="card-header">
+          <h1>Dashboard de empresas</h1>
+        </div>
+        <div className="card-body">
+          {/* Button Trigger Modal */}
+          <button
+            type="button"
+            className="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Cargar datos de la empresa
+          </button>
 
-            {/* Modal */}
-            <div
-              className="modal fade"
-              id="exampleModal"
-              tabIndex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">
-                      Cargar datos de empresa
-                    </h5>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <form onSubmit={handleSubmit}>
-                      <div className="mb-3">
-                        <label htmlFor="">Nombre de la empresa</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Nombre de la empresa"
-                          name="companyName"
-                          onChange={(e) => setCompanyName(e.target.value)}
-                          //required
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="">Imagen de la empresa</label>
-                        <input
-                          type="file"
-                          className="form-control"
-                          placeholder="Imagen de la empresa"
-                          name="companyImage"
-                          onChange={(e) => setCompanyImage(e.target.files[0])}
-                          //required
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        className="btn btn-primary btn-block"
-                      >
-                        Ingresar datos de la empresa
-                      </button>
-                    </form>
-                  </div>
-                  <div className="modal-footer">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Cerrar Modal
+          {/* Modal */}
+          <div
+            className="modal fade"
+            id="exampleModal"
+            tabIndex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLabel">
+                    Cargar datos de empresa
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                      <label htmlFor="">Nombre de la empresa</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Nombre de la empresa"
+                        name="companyName"
+                        onChange={(e) => setCompanyName(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="">Imagen de la empresa</label>
+                      <input
+                        type="file"
+                        className="form-control"
+                        placeholder="Imagen de la empresa"
+                        name="companyImage"
+                        onChange={(e) => setCompanyImage(e.target.files[0])}
+                        required
+                      />
+                    </div>
+                    <button type="submit" className="btn btn-primary btn-block">
+                      Ingresar datos de la empresa
                     </button>
-                  </div>
+                  </form>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cerrar Modal
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="container">
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Imagen</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Empresas.map((empresa, index) => (
-                  <tr key={index} style={{ textAlign: 'center' }}>
-                  <th scope="row" style={{ verticalAlign: 'middle' }}>
+        </div>
+        <div className="container">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Imagen</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Empresas.map((empresa, index) => (
+                <tr key={index} style={{ textAlign: "center" }}>
+                  <th scope="row" style={{ verticalAlign: "middle" }}>
                     {empresa.id}
                   </th>
-                  <td style={{ verticalAlign: 'middle' }}>
-                    {empresa.nombre}
-                  </td>
-                  <td style={{ verticalAlign: 'middle' }}>
+                  <td style={{ verticalAlign: "middle" }}>{empresa.nombre}</td>
+                  <td style={{ verticalAlign: "middle" }}>
                     {/* Asegúrate de incluir la lógica para mostrar la imagen si es necesario */}
                     <img
                       src={`${empresa.url_image}`}
                       className="img-fluid"
                       alt=""
-                      style={{ maxWidth: '50%', maxHeight: '50%', display: 'block', margin: '0 auto' }}
+                      style={{
+                        maxWidth: "50%",
+                        maxHeight: "50%",
+                        display: "block",
+                        margin: "0 auto",
+                      }}
                     />
                   </td>
                 </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <br />
-        {/* Enlace a la página Home */}
-        <Link to="/">
-          <button className="btn btn-secondary btn-block">
-            Volver a Inicio
-          </button>
-        </Link>
       </div>
-    </div>
+      <br />
+      {/* Enlace a la página Home */}
+      <Link to="/">
+        <button className="btn btn-secondary btn-block">Volver a Inicio</button>
+      </Link>
+    </>
   );
 }
 

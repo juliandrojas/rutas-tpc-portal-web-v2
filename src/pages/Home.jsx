@@ -16,6 +16,9 @@ function Home() {
   };
 
   const containerStyle = {
+    backgroundImage: "url(/FondoMenu.jpeg)",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
     minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
